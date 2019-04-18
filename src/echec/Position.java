@@ -3,8 +3,8 @@ package echec;
 /**
  * Classe pour une position de base.
  *
- * @author Olivier Chan.
- * @author David Goulet.
+ * @author Olivier Chan
+ * @author David Goulet
  */
 public class Position {
     private int m_x;

@@ -6,8 +6,8 @@ import junit.framework.TestCase;
 /**
  * Classe de test pour la pièce de base.
  *
- * @author Olivier Chan.
- * @author David Goulet.
+ * @author Olivier Chan
+ * @author David Goulet
  */
 public abstract class TestPieceBase extends TestCase {
 
@@ -30,5 +30,11 @@ public abstract class TestPieceBase extends TestCase {
         m_pieceBase = creerPiece(PieceBase.Couleur.BLANC, new Position(3,3));
         assertEquals(PieceBase.Couleur.BLANC, m_pieceBase.getCouleur());
         assertEquals(new Position(3,3), m_pieceBase.getPosition());
+
+        PieceBase pieceBaseNoire = creerPiece(PieceBase.Couleur.NOIR, new Position(1,4));
+        assertEquals(PieceBase.Couleur.NOIR, pieceBaseNoire.getCouleur());
+        assertEquals(new Position(1,4), pieceBaseNoire.getPosition());
     }
+
+
 }

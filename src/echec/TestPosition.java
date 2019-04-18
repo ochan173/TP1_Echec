@@ -5,8 +5,8 @@ import junit.framework.TestCase;
 /**
  * Classe de tests pour une position.
  *
- * @author Olivier Chan.
- * @author David Goulet.
+ * @author Olivier Chan
+ * @author David Goulet
  */
 public class TestPosition extends TestCase {
     /**
