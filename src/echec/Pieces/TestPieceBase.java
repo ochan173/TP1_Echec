@@ -27,14 +27,12 @@ public abstract class TestPieceBase extends TestCase {
      * Test la création d'une pièce de base.
      */
     public void testCreer() {
-        m_pieceBase = creerPiece(PieceBase.Couleur.BLANC, new Position(3,3));
+        m_pieceBase = creerPiece(PieceBase.Couleur.BLANC, new Position(1,1));
         assertEquals(PieceBase.Couleur.BLANC, m_pieceBase.getCouleur());
-        assertEquals(new Position(3,3), m_pieceBase.getPosition());
+        assertEquals(new Position(1,1), m_pieceBase.getPosition());
 
         PieceBase pieceBaseNoire = creerPiece(PieceBase.Couleur.NOIR, new Position(1,4));
         assertEquals(PieceBase.Couleur.NOIR, pieceBaseNoire.getCouleur());
         assertEquals(new Position(1,4), pieceBaseNoire.getPosition());
     }
-
-
 }
