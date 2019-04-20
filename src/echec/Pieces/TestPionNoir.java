@@ -35,6 +35,15 @@ public class TestPionNoir extends TestPieceBase {
         return positionsAttendues;
     }
 
+    @Override
+    public void testZoneAttaque() {
+        m_pieceBase = Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(1,6));
+        ArrayList<Position> zoneAttaques = new ArrayList<>();
+        zoneAttaques.add(new Position(0,5));
+        zoneAttaques.add(new Position(2,5));
+        assertEquals(zoneAttaques, m_pieceBase.zoneAttaques());
+    }
+
     /**
      * Test les déplacements de base valide pour un Pion(noir).
      */

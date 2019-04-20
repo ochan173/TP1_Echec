@@ -14,8 +14,26 @@ import java.util.ArrayList;
 public abstract class PieceBase {
     /**
      * Couleur disponible pour les pièces d'un jeu d'échec.
+     * Permet aussi aux pions de savoir dans quelle direction ils avancent.
      */
-    public enum Couleur {BLANC, NOIR}
+    public enum Couleur {
+        BLANC(1),
+        NOIR(-1);
+
+        private int m_direction;
+
+        /**
+         * Constructeur pour la couleur
+         * @param p_direction
+         */
+        Couleur(int p_direction) {m_direction = p_direction; }
+
+        /**
+         * Donne la direction, sur l'axe des Y, des pions en fonction de sa couleur.
+         * @return la valeur de déplacement utilisé en Y
+         */
+        public int getDirection() { return m_direction; }
+    }
 
     /**
      * Énum des types de pièce disponibles.
@@ -42,7 +60,7 @@ public abstract class PieceBase {
      * Constructeur de base pour une pièce.
      * @param p_couleur la couleur que la pièce recevera.
      * @param p_type Type de la pièce.
-     * @param p_position La position initiale de la pièce
+     * @param p_position La position initiale de la pièce.
      */
     protected PieceBase(Couleur p_couleur, TypePiece p_type, Position p_position) {
         m_couleur = p_couleur;
@@ -55,23 +73,25 @@ public abstract class PieceBase {
      * @param p_nouvellePosition la nouvelle position pour la pièce.
      */
     public boolean deplacer(Position p_nouvellePosition) {
-        if(mouvementPossible().contains(p_nouvellePosition)) {
+        if(mouvementsPossible().contains(p_nouvellePosition)) {
             m_position.modifierPosition(p_nouvellePosition);
             return true;
         }
         return false;
     }
 
-//    /**
-//     * Détermine les déplacements qui sont valide pour la pièce.
-//     * @return si le déplacement est valide.
-//     */
-//    protected abstract Position deplacementValide();
+    /**
+     * Permet d'obtenir les positions pouvant être attaquées par la pièce.
+     * @return les postions que la pièce peut attaquer.
+     */
+    public ArrayList<Position> zoneAttaques() {
+        return mouvementsPossible();
+    }
 
     /**
      * Permet de retourner toutes les positions (sans contraintes) d'une pièce
      * en fonction du type de mouvement qu'elle possède.
      * @return Une collection de positions.
      */
-    public abstract ArrayList<Position> mouvementPossible();
+    public abstract ArrayList<Position> mouvementsPossible();
 }

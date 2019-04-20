@@ -69,5 +69,5 @@ public class TestTour extends TestPieceBase {
 
         assertTrue(super.m_pieceBase.deplacer(new Position(5,5)));
         assertEquals(new Position(5,5), m_pieceBase.getPosition());
-
+    }
 }

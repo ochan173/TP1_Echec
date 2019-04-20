@@ -68,7 +68,13 @@ public abstract class TestPieceBase extends TestCase {
      * Test les mouvements possible d'un roi.
      */
     public void testMouvementPossible() {
-        assertEquals(obtenirMouvementPossible(), m_pieceBase.mouvementPossible());
+        assertEquals(obtenirMouvementPossible(), m_pieceBase.mouvementsPossible());
+    }
 
+    /**
+     * Test la zone que la pièce menace.
+     */
+    public void testZoneAttaque() {
+        assertEquals(obtenirMouvementPossible(), m_pieceBase.zoneAttaques());
     }
 }
