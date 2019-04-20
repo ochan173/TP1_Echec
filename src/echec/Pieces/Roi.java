@@ -34,7 +34,7 @@ public class Roi extends PieceBase {
 
     @Override
     public ArrayList<Position> mouvementsPossible() {
-        ArrayList<Position> mouvements = new ArrayList<Position>();
+        ArrayList<Position> mouvements = new ArrayList<>();
 
         // Mouvements vertical
         mouvements.add(new Position(this.getPosition().getX(), this.getPosition().getY() + 1));
