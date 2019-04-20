@@ -5,48 +5,49 @@ import echec.Position;
 import java.util.ArrayList;
 
 /**
- * Classe de test pour la piece Roi.
+ * Classe de test pour la piece fou.
  *
  * @author Olivier Chan
  * @author David Goulet
  */
-public class TestRoi extends TestPieceBase {
+public class TestFou extends TestPieceBase {
+
     @Override
     protected PieceBase creerPiece(PieceBase.Couleur p_couleur, Position p_position) {
-        return Roi.obtenirPiece(p_couleur, p_position);
+        return Fou.obtenirPiece(p_couleur, p_position);
     }
 
     @Override
     protected PieceBase.TypePiece obtenirTypePiece() {
-        return PieceBase.TypePiece.ROI;
+        return PieceBase.TypePiece.FOU;
     }
 
     @Override
     protected ArrayList<Position> obtenirMouvementPossible() {
         ArrayList<Position> positionsAttendues = new ArrayList<Position>();
         positionsAttendues.add(new Position(0,0));
-        positionsAttendues.add(new Position(1,0));
         positionsAttendues.add(new Position(2,0));
-        positionsAttendues.add(new Position(0,1));
-        positionsAttendues.add(new Position(2,1));
         positionsAttendues.add(new Position(0,2));
-        positionsAttendues.add(new Position(1,2));
         positionsAttendues.add(new Position(2,2));
+        positionsAttendues.add(new Position(3,3));
+        positionsAttendues.add(new Position(4,4));
+        positionsAttendues.add(new Position(5,5));
+        positionsAttendues.add(new Position(6,6));
+        positionsAttendues.add(new Position(7,7));
         return positionsAttendues;
     }
 
-
     /**
-     * Test les déplacements de base valide pour un Roi.
+     * Test les déplacement de base valide pour un fou
      */
     public void testDeplacementValide() {
 
         // VALIDATION NÉGATIVE
 
-        assertFalse(super.m_pieceBase.deplacer(new Position(3,1)));
+        assertFalse(super.m_pieceBase.deplacer(new Position(1,2)));
         assertEquals(new Position(1,1), m_pieceBase.getPosition());
 
-        assertFalse(super.m_pieceBase.deplacer(new Position(1,3)));
+        assertFalse(super.m_pieceBase.deplacer(new Position(2,1)));
         assertEquals(new Position(1,1), m_pieceBase.getPosition());
 
         // VALIDATION POSITIVE
@@ -54,23 +55,11 @@ public class TestRoi extends TestPieceBase {
         assertTrue(super.m_pieceBase.deplacer(new Position(2,2)));
         assertEquals(new Position(2,2), m_pieceBase.getPosition());
 
-        assertTrue(super.m_pieceBase.deplacer(new Position(1,2)));
-        assertEquals(new Position(1,2), m_pieceBase.getPosition());
-
-        assertTrue(super.m_pieceBase.deplacer(new Position(0,1)));
-        assertEquals(new Position(0,1), m_pieceBase.getPosition());
-
-        assertTrue(super.m_pieceBase.deplacer(new Position(0,0)));
-        assertEquals(new Position(0,0), m_pieceBase.getPosition());
-
-        assertTrue(super.m_pieceBase.deplacer(new Position(1,0)));
-        assertEquals(new Position(1,0), m_pieceBase.getPosition());
-
         assertTrue(super.m_pieceBase.deplacer(new Position(1,1)));
         assertEquals(new Position(1,1), m_pieceBase.getPosition());
 
-        assertTrue(super.m_pieceBase.deplacer(new Position(2,0)));
-        assertEquals(new Position(2,0), m_pieceBase.getPosition());
+        assertTrue(super.m_pieceBase.deplacer(new Position(0,2)));
+        assertEquals(new Position(0,2), m_pieceBase.getPosition());
 
         assertTrue(super.m_pieceBase.deplacer(new Position(1,1)));
         assertEquals(new Position(1,1), m_pieceBase.getPosition());
