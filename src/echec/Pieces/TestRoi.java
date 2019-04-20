@@ -5,7 +5,7 @@ import echec.Position;
 import java.util.ArrayList;
 
 /**
- * Classe de test pour la piece Roi.
+ * Classe de test pour la pièce Roi.
  *
  * @author Olivier Chan
  * @author David Goulet

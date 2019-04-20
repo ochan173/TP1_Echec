@@ -5,7 +5,7 @@ import echec.Position;
 import java.util.ArrayList;
 
 /**
- * Classe test pour la pièce Tour.
+ * Classe test pour la pièce Cavalier.
  *
  * @author Olivier Chan
  * @author David Goulet
@@ -49,7 +49,7 @@ public class TestCavalier extends TestPieceBase {
     }
 
     /**
-     * Test les déplacements de base valide pour un Roi.
+     * Test les déplacements de base valide pour un Cavalier.
      */
     public void testDeplacementValide() {
 

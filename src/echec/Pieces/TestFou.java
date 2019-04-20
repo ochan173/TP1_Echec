@@ -5,7 +5,7 @@ import echec.Position;
 import java.util.ArrayList;
 
 /**
- * Classe de test pour la piece fou.
+ * Classe de test pour la pièce Fou.
  *
  * @author Olivier Chan
  * @author David Goulet
@@ -38,7 +38,7 @@ public class TestFou extends TestPieceBase {
     }
 
     /**
-     * Test les déplacement de base valide pour un fou
+     * Test les déplacement de base valide pour un Fou
      */
     public void testDeplacementValide() {
 

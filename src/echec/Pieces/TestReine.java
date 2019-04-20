@@ -4,6 +4,12 @@ import echec.Position;
 
 import java.util.ArrayList;
 
+/**
+ * Classe de test pour la pièce Reine.
+ *
+ * @author Olivier Chan
+ * @author David Goulet
+ */
 public class TestReine extends TestPieceBase {
     @Override
     protected PieceBase creerPiece(PieceBase.Couleur p_couleur, Position p_position) {

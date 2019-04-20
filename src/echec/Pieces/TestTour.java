@@ -5,7 +5,7 @@ import echec.Position;
 import java.util.ArrayList;
 
 /**
- * Classe test pour la piece cavalier.
+ * Classe test pour la pièce Tour.
  *
  * @author Olivier Chan
  * @author David Goulet
