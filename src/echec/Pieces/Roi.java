@@ -36,19 +36,29 @@ public class Roi extends PieceBase {
     public ArrayList<Position> mouvementsPossible() {
         ArrayList<Position> mouvements = new ArrayList<>();
 
-        // Mouvements vertical
-        mouvements.add(new Position(this.getPosition().getX(), this.getPosition().getY() + 1));
-        mouvements.add(new Position(this.getPosition().getX(), this.getPosition().getY() - 1));
+        if (this.getPosition().getX() - 1 >= 0) {
+            mouvements.add(new Position(this.getPosition().getX() - 1, this.getPosition().getY()));
+            if (this.getPosition().getY() - 1 >= 0 ) {
+                mouvements.add(new Position(this.getPosition().getX() - 1, this.getPosition().getY() - 1));
+            }
+            if (this.getPosition().getY() + 1 <= 7) {
+                mouvements.add(new Position(this.getPosition().getX() - 1, this.getPosition().getY() + 1));
+            }
+        }
 
-        // Mouvements horizontal
-        mouvements.add(new Position(this.getPosition().getX() - 1, this.getPosition().getY()));
-        mouvements.add(new Position(this.getPosition().getX() + 1, this.getPosition().getY()));
+        if (this.getPosition().getX() + 1 <= 7) {
 
-        // Mouvements diagonal
-        mouvements.add(new Position(this.getPosition().getX() - 1, this.getPosition().getY() - 1));
-        mouvements.add(new Position(this.getPosition().getX() + 1, this.getPosition().getY() + 1));
-        mouvements.add(new Position(this.getPosition().getX() - 1, this.getPosition().getY() + 1));
-        mouvements.add(new Position(this.getPosition().getX() + 1, this.getPosition().getY() - 1));
+            mouvements.add(new Position(this.getPosition().getX() + 1, this.getPosition().getY()));
+            if (this.getPosition().getY() - 1 >= 0 ) {
+                mouvements.add(new Position(this.getPosition().getX() + 1, this.getPosition().getY() - 1));
+                mouvements.add(new Position(this.getPosition().getX(), this.getPosition().getY() - 1));
+            }
+            if (this.getPosition().getY() + 1 <= 7) {
+                mouvements.add(new Position(this.getPosition().getX() + 1, this.getPosition().getY() + 1));
+                mouvements.add(new Position(this.getPosition().getX(), this.getPosition().getY() + 1));
+            }
+        }
+
         return mouvements;
     }
 }
