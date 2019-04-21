@@ -1,5 +1,7 @@
 package echec;
 
+import java.util.Objects;
+
 /**
  * Classe pour une position de base.
  *
@@ -43,4 +45,14 @@ public class Position {
         m_x = p_position.getX();
         m_y = p_position.getY();
     }
+
+    @Override
+    public boolean equals(Object p_o) {
+        if (this == p_o) return true;
+        if (!(p_o instanceof Position)) return false;
+        Position position = (Position) p_o;
+        return Objects.equals(m_x, position.m_x) &&
+                Objects.equals(m_y, position.m_y);
+    }
+
 }

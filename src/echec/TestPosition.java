@@ -31,4 +31,28 @@ public class TestPosition extends TestCase {
         assertEquals(6, p.getX());
         assertEquals(4, p.getY());
     }
+
+    public void testEgalite() {
+        Position positionA = new Position(5,5);
+        Position positionB = new Position(5,5);
+        assertEquals(positionA, positionB);
+
+        Position positionC = new Position(4,4);
+        assertFalse(positionA.equals(positionC));
+
+        // Réflexivité
+        assertEquals(positionA, positionA);
+
+        // Symétrie
+        assertEquals(positionB, positionA);
+
+        // Transivité
+        Position positionD = new Position(5,5);
+        assertEquals(positionA, positionD);
+        assertEquals(positionB, positionD);
+
+        // Constance
+        assertNotNull(positionA);
+        assertFalse(positionA.equals("Position"));
+    }
 }
