@@ -4,13 +4,7 @@ import echec.Position;
 
 import java.util.ArrayList;
 
-/**
- * Classe de la pièce Foué.
- *
- * @author Olivier Chan
- * @author  David Goulet
- */
-public class Fou extends PieceBase {
+public class Reine extends PieceBase {
     /**
      * Constructeur de base pour une pièce.
      *
@@ -18,19 +12,20 @@ public class Fou extends PieceBase {
      * @param p_type     Type de la pièce.
      * @param p_position La position initiale de la pièce.
      */
-    private Fou(Couleur p_couleur, TypePiece p_type, Position p_position) {
+    private Reine(Couleur p_couleur, TypePiece p_type, Position p_position) {
         super(p_couleur, p_type, p_position);
     }
 
     /**
-     * Permet d'obtenir une pièce Fou.
+     * Permet d'obtenir une pièce Reine.
      * @param p_couleur couleur de la pièce.
      * @param p_position position de la pièce à la création.
-     * @return un nouveau Fou.
+     * @return un nouveau Reine.
      */
     public static PieceBase obtenirPiece(Couleur p_couleur, Position p_position) {
-        return new Fou(p_couleur, TypePiece.FOU, p_position);
+        return new Reine(p_couleur, TypePiece.REINE, p_position);
     }
+
     @Override
     public ArrayList<Position> mouvementsPossible() {
         int x = this.getPosition().getX();
@@ -38,7 +33,19 @@ public class Fou extends PieceBase {
 
         ArrayList<Position> mouvements = new ArrayList<>();
 
-        for (int i = 1; i < 8 ; i++) {
+        for (int i = 0; i < 8;) {
+
+            // Position horizontal
+            if (i != x) {
+                mouvements.add(new Position(i, y));
+            }
+
+            // Position vertical
+            if (i != y) {
+                mouvements.add(new Position(x, i));
+            }
+
+            i++;
 
             // Positions vers la Droite
             if (this.getPosition().getX() + i != 8) {
