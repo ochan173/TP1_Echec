@@ -33,9 +33,6 @@ public class Fou extends PieceBase {
     }
     @Override
     public ArrayList<Position> mouvementsPossible() {
-        int x = this.getPosition().getX();
-        int y = this.getPosition().getY();
-
         ArrayList<Position> mouvements = new ArrayList<>();
 
         for (int i = 1; i < 8 ; i++) {
