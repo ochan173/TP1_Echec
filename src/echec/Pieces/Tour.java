@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author David Goulet
  */
 public class Tour extends PieceBase {
+
     /**
      * Constructeur de base pour une pièce.
      *

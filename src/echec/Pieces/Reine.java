@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author David Goulet
  */
 public class Reine extends PieceBase {
+
     /**
      * Constructeur de base pour une pièce.
      *

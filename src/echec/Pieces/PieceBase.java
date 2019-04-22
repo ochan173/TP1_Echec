@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author David Goulet
  */
 public abstract class PieceBase {
+
     /**
      * Couleur disponible pour les pièces d'un jeu d'échec.
      * Permet aussi aux pions de savoir dans quelle direction ils avancent.
@@ -24,13 +25,14 @@ public abstract class PieceBase {
 
         /**
          * Constructeur pour la couleur
-         * @param p_direction
+         * @param p_direction valeur entière qui sera utilisée pour déterminer le sens
+         *                    dans lequel un pion va avancer.
          */
         Couleur(int p_direction) {m_direction = p_direction; }
 
         /**
          * Donne la direction, sur l'axe des Y, des pions en fonction de sa couleur.
-         * @return la valeur de déplacement utilisé en Y
+         * @return la valeur de déplacement utilisé en Y.
          */
         public int getDirection() { return m_direction; }
     }
@@ -52,7 +54,7 @@ public abstract class PieceBase {
         return m_position;
     }
 
-    public TypePiece getType() {
+    protected TypePiece getType() {
         return m_type;
     }
 
@@ -72,7 +74,7 @@ public abstract class PieceBase {
      * Déplace la pièce avec une nouvelle position.
      * @param p_nouvellePosition la nouvelle position pour la pièce.
      */
-    public boolean deplacer(Position p_nouvellePosition) {
+    protected boolean deplacer(Position p_nouvellePosition) {
         if(mouvementsPossible().contains(p_nouvellePosition)) {
             m_position.modifierPosition(p_nouvellePosition);
             return true;

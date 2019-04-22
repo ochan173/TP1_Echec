@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author David Goulet
  */
 public class Roi extends PieceBase {
+
     /**
      * Constructeur de base pour une pièce.
      *

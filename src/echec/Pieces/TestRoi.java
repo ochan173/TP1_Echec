@@ -35,7 +35,6 @@ public class TestRoi extends TestPieceBase {
         return positionsAttendues;
     }
 
-
     /**
      * Test les déplacements de base valide pour un Roi.
      */
