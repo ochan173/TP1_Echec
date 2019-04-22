@@ -87,17 +87,17 @@ public class TestReine extends TestPieceBase {
         assertTrue(super.m_pieceBase.deplacer(new Position(1,5)));
         assertEquals(new Position(1,5), m_pieceBase.getPosition());
 
-        assertTrue(super.m_pieceBase.deplacer(new Position(4,7)));
-        assertEquals(new Position(4,7), m_pieceBase.getPosition());
+        assertTrue(super.m_pieceBase.deplacer(new Position(3,7)));
+        assertEquals(new Position(3,7), m_pieceBase.getPosition());
 
-        assertTrue(super.m_pieceBase.deplacer(new Position(7,4)));
-        assertEquals(new Position(7,4), m_pieceBase.getPosition());
+        assertTrue(super.m_pieceBase.deplacer(new Position(7,3)));
+        assertEquals(new Position(7,3), m_pieceBase.getPosition());
 
-        assertTrue(super.m_pieceBase.deplacer(new Position(2,4)));
-        assertEquals(new Position(2,4), m_pieceBase.getPosition());
+        assertTrue(super.m_pieceBase.deplacer(new Position(2,3)));
+        assertEquals(new Position(2,3), m_pieceBase.getPosition());
 
-        assertTrue(super.m_pieceBase.deplacer(new Position(0,2)));
-        assertEquals(new Position(2,4), m_pieceBase.getPosition());
+        assertTrue(super.m_pieceBase.deplacer(new Position(0,3)));
+        assertEquals(new Position(0,3), m_pieceBase.getPosition());
 
         assertTrue(super.m_pieceBase.deplacer(new Position(0,0)));
         assertEquals(new Position(0,0), m_pieceBase.getPosition());

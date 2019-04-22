@@ -55,4 +55,8 @@ public class Position {
                 Objects.equals(m_y, position.m_y);
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(m_x, m_y);
+    }
 }

@@ -38,29 +38,29 @@ public class Fou extends PieceBase {
         for (int i = 1; i < 8 ; i++) {
 
             // Positions vers la Droite
-            if (this.getPosition().getX() + i != 8) {
+            if (this.getPosition().getX() + i <= 7) {
 
                 // Position Sup. Droite
-                if (this.getPosition().getY() + i != 8) {
+                if (this.getPosition().getY() + i <= 7) {
                     mouvements.add(new Position(this.getPosition().getX() + i , this.getPosition().getY() + i ));
                 }
 
                 // Position Inf. Droite
-                if (this.getPosition().getY() - i != 0) {
+                if (this.getPosition().getY() - i >= 0) {
                     mouvements.add(new Position(this.getPosition().getX() + i , this.getPosition().getY() - i ));
                 }
             }
 
             // Positions vers la gauche
-            if (this.getPosition().getX() - i != 0) {
+            if (this.getPosition().getX() - i >= 0) {
 
                 // Position Sup. Gauche
-                if (this.getPosition().getY() + i != 8) {
+                if (this.getPosition().getY() + i <= 7) {
                     mouvements.add(new Position(this.getPosition().getX() - i , this.getPosition().getY() + i ));
                 }
 
                 // Position Inf. Gauche
-                if (this.getPosition().getY() - i != 0) {
+                if (this.getPosition().getY() - i >= 0) {
                     mouvements.add(new Position(this.getPosition().getX() - i , this.getPosition().getY() - i ));
                 }
             }

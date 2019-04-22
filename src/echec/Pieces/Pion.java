@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Pion extends PieceBase {
 
-    private Position m_positionInitiale;
+    private int m_positionInitiale;
     /**
      * Constructeur de base pour une pièce.
      *
@@ -16,7 +16,12 @@ public class Pion extends PieceBase {
      */
     private Pion(Couleur p_couleur, TypePiece p_type, Position p_position) {
         super(p_couleur, p_type, p_position);
-        m_positionInitiale = p_position;
+        if ( p_couleur == Couleur.BLANC) {
+            m_positionInitiale = 1;
+        }
+        else {
+            m_positionInitiale = 6;
+        }
     }
 
     /**
@@ -34,7 +39,7 @@ public class Pion extends PieceBase {
         ArrayList<Position> mouvements = new ArrayList<>();
 
         mouvements.add(new Position(this.getPosition().getX(), this.getPosition().getY() + this.getCouleur().getDirection()));
-        if (m_positionInitiale == this.getPosition()) {
+        if (m_positionInitiale == this.getPosition().getY()) {
             mouvements.add(new Position(this.getPosition().getX(), this.getPosition().getY() + this.getCouleur().getDirection() * 2));
         }
         return mouvements;
@@ -44,8 +49,8 @@ public class Pion extends PieceBase {
     public ArrayList<Position> zoneAttaques() {
         ArrayList<Position> positionsAttaque = new ArrayList<>();
 
-        positionsAttaque.add(new Position(this.getPosition().getX() + 1, this.getPosition().getY() + this.getCouleur().getDirection()));
         positionsAttaque.add(new Position(this.getPosition().getX() - 1, this.getPosition().getY() + this.getCouleur().getDirection()));
+        positionsAttaque.add(new Position(this.getPosition().getX() + 1, this.getPosition().getY() + this.getCouleur().getDirection()));
 
         return positionsAttaque;
     }

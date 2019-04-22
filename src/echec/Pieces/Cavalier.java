@@ -1,6 +1,7 @@
 package echec.Pieces;
 
 import echec.Position;
+import echec.PositionInvalideException;
 
 import java.util.ArrayList;
 
@@ -31,25 +32,77 @@ public class Cavalier extends PieceBase {
     public ArrayList<Position> mouvementsPossible() {
         ArrayList<Position> mouvements = new ArrayList<>();
 
-        int xPlus = 1;
-        int xMoins = -1;
-        int yPlus = 2;
-        int yMoins = -2;
+        int plus = 1;
+        int moins = -1;
+        int plus2 = 2;
+        int moins2 = -2;
 
-        Position hautDroit =  new Position(this.getPosition().getX() + xPlus, this.getPosition().getY()+yPlus);
-        Position hautGauche =  new Position(this.getPosition().getX() + xMoins, this.getPosition().getY()+yPlus);
-        Position basDroit =  new Position(this.getPosition().getX() + xPlus, this.getPosition().getY()+yMoins);
-        Position basGauche =  new Position(this.getPosition().getX() + xMoins, this.getPosition().getY()+yMoins);
+        try {
+            mouvements.add(new Position(this.getPosition().getX() + plus, this.getPosition().getY()+plus2));
+        }
+        catch (PositionInvalideException e) {
+        }
 
-        mouvements.add(hautDroit);
-        mouvements.add(hautGauche);
-        mouvements.add(basDroit);
-        mouvements.add(basGauche);
+        try {
+            mouvements.add(new Position(this.getPosition().getX() + moins, this.getPosition().getY()+plus2));
+        }
+        catch (PositionInvalideException e) {
+        }
 
-        mouvements.add(new Position(hautDroit.getY(), hautDroit.getX()));
-        mouvements.add(new Position(hautGauche.getY(), hautGauche.getX()));
-        mouvements.add(new Position(basGauche.getY(), basGauche.getX()));
-        mouvements.add(new Position(basDroit.getY(), basDroit.getX()));
+        try {
+            mouvements.add(new Position(this.getPosition().getX() + plus, this.getPosition().getY()+moins2));
+        }
+        catch (PositionInvalideException e) {
+        }
+
+        try {
+            mouvements.add(new Position(this.getPosition().getX() + moins, this.getPosition().getY()+moins2));
+        }
+        catch (PositionInvalideException e) {
+        }
+
+        try {
+            mouvements.add(new Position(this.getPosition().getX() + plus2, this.getPosition().getY()+plus));
+        }
+        catch (PositionInvalideException e) {
+        }
+
+        try {
+            mouvements.add(new Position(this.getPosition().getX() + moins2, this.getPosition().getY()+plus));
+        }
+        catch (PositionInvalideException e) {
+        }
+
+        try {
+            mouvements.add(new Position(this.getPosition().getX() + plus2, this.getPosition().getY()+moins));
+        }
+        catch (PositionInvalideException e) {
+        }
+
+        try {
+            mouvements.add(new Position(this.getPosition().getX() + moins2, this.getPosition().getY()+moins));
+        }
+        catch (PositionInvalideException e) {
+        }
+
+
+
+//        Position hautDroit =  new Position(this.getPosition().getX() + plus, this.getPosition().getY()+plus2);
+//        Position hautGauche =  new Position(this.getPosition().getX() + moins, this.getPosition().getY()+plus2);
+//        Position basDroit =  new Position(this.getPosition().getX() + plus, this.getPosition().getY()+moins2);
+//        Position basGauche =  new Position(this.getPosition().getX() + moins, this.getPosition().getY()+moins2);
+//
+//
+//
+//        mouvements.add(hautDroit);
+//        mouvements.add(hautGauche);
+//        mouvements.add(basDroit);
+//        mouvements.add(basGauche);
+//
+//        mouvements.add(new Position(hautDroit.getY(), hautDroit.getX()));
+//        mouvements.add(new Position(hautGauche.getY(), hautGauche.getX()));
+//        mouvements.add(new Position(basGauche.getY(), basGauche.getX()));
+//        mouvements.add(new Position(basDroit.getY(), basDroit.getX()));
 
         return mouvements;
     }
