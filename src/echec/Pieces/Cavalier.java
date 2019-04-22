@@ -5,6 +5,12 @@ import echec.PositionInvalideException;
 
 import java.util.ArrayList;
 
+/**
+ * Classe de la pièce Cavalier.
+ *
+ * @author Olivier Chan
+ * @author David Goulet
+ */
 public class Cavalier extends PieceBase {
 
     /**
@@ -41,48 +47,56 @@ public class Cavalier extends PieceBase {
             mouvements.add(new Position(this.getPosition().getX() + plus, this.getPosition().getY()+plus2));
         }
         catch (PositionInvalideException e) {
+            // Ne fait rien, empêche simplement de planter si la position est invalide, donc non crée
         }
 
         try {
             mouvements.add(new Position(this.getPosition().getX() + moins, this.getPosition().getY()+plus2));
         }
         catch (PositionInvalideException e) {
+            // Ne fait rien, empêche simplement de planter si la position est invalide, donc non crée
         }
 
         try {
             mouvements.add(new Position(this.getPosition().getX() + plus, this.getPosition().getY()+moins2));
         }
         catch (PositionInvalideException e) {
+            // Ne fait rien, empêche simplement de planter si la position est invalide, donc non crée
         }
 
         try {
             mouvements.add(new Position(this.getPosition().getX() + moins, this.getPosition().getY()+moins2));
         }
         catch (PositionInvalideException e) {
+            // Ne fait rien, empêche simplement de planter si la position est invalide, donc non crée
         }
 
         try {
             mouvements.add(new Position(this.getPosition().getX() + plus2, this.getPosition().getY()+plus));
         }
         catch (PositionInvalideException e) {
+            // Ne fait rien, empêche simplement de planter si la position est invalide, donc non crée
         }
 
         try {
             mouvements.add(new Position(this.getPosition().getX() + moins2, this.getPosition().getY()+plus));
         }
         catch (PositionInvalideException e) {
+            // Ne fait rien, empêche simplement de planter si la position est invalide, donc non crée
         }
 
         try {
             mouvements.add(new Position(this.getPosition().getX() + plus2, this.getPosition().getY()+moins));
         }
         catch (PositionInvalideException e) {
+            // Ne fait rien, empêche simplement de planter si la position est invalide, donc non crée
         }
 
         try {
             mouvements.add(new Position(this.getPosition().getX() + moins2, this.getPosition().getY()+moins));
         }
         catch (PositionInvalideException e) {
+            // Ne fait rien, empêche simplement de planter si la position est invalide, donc non crée
         }
 
 

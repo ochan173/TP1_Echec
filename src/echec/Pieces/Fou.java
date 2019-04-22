@@ -5,7 +5,7 @@ import echec.Position;
 import java.util.ArrayList;
 
 /**
- * Classe de la pièce Foué.
+ * Classe de la pièce Fou.
  *
  * @author Olivier Chan
  * @author  David Goulet
@@ -31,6 +31,7 @@ public class Fou extends PieceBase {
     public static PieceBase obtenirPiece(Couleur p_couleur, Position p_position) {
         return new Fou(p_couleur, TypePiece.FOU, p_position);
     }
+
     @Override
     public ArrayList<Position> mouvementsPossible() {
         ArrayList<Position> mouvements = new ArrayList<>();

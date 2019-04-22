@@ -4,6 +4,12 @@ import echec.Position;
 
 import java.util.ArrayList;
 
+/**
+ * Classe de la pièce Pion.
+ *
+ * @author Olivier Chan
+ * @author David Goulet
+ */
 public class Pion extends PieceBase {
 
     private int m_positionInitiale;
@@ -42,6 +48,7 @@ public class Pion extends PieceBase {
         if (m_positionInitiale == this.getPosition().getY()) {
             mouvements.add(new Position(this.getPosition().getX(), this.getPosition().getY() + this.getCouleur().getDirection() * 2));
         }
+
         return mouvements;
     }
 

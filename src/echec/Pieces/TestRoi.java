@@ -23,7 +23,7 @@ public class TestRoi extends TestPieceBase {
 
     @Override
     protected ArrayList<Position> obtenirMouvementPossible() {
-        ArrayList<Position> positionsAttendues = new ArrayList<Position>();
+        ArrayList<Position> positionsAttendues = new ArrayList<>();
         positionsAttendues.add(new Position(0,0));
         positionsAttendues.add(new Position(1,0));
         positionsAttendues.add(new Position(2,0));
@@ -74,6 +74,5 @@ public class TestRoi extends TestPieceBase {
 
         assertTrue(super.m_pieceBase.deplacer(new Position(1,1)));
         assertEquals(new Position(1,1), m_pieceBase.getPosition());
-
     }
 }

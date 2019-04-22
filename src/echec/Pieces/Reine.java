@@ -4,6 +4,12 @@ import echec.Position;
 
 import java.util.ArrayList;
 
+/**
+ * Classe de la pièce Reine.
+ *
+ * @author Olivier Chan
+ * @author David Goulet
+ */
 public class Reine extends PieceBase {
     /**
      * Constructeur de base pour une pièce.
