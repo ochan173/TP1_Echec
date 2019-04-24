@@ -4,6 +4,7 @@ package echec.Pieces;
 import echec.Position;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Classe de base pour toutes les pièces.
@@ -96,4 +97,13 @@ public abstract class PieceBase {
      * @return Une collection de positions.
      */
     public abstract ArrayList<Position> mouvementsPossible();
+
+    @Override
+    public boolean equals(Object p_o) {
+        if (this == p_o) return true;
+        if (!(p_o instanceof PieceBase)) return false;
+        PieceBase piece = (PieceBase) p_o;
+        return Objects.equals(m_couleur, piece.m_couleur) &&
+                Objects.equals(m_position, piece.m_position);
+    }
 }

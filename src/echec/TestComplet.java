@@ -15,6 +15,7 @@ public class TestComplet extends TestCase {
         TestSuite suite = new TestSuite();
         suite.addTest(TestCompletPieces.suite());
         suite.addTestSuite(TestPosition.class);
+        suite.addTestSuite(TestEchiquier.class);
         return suite;
     }
 }
