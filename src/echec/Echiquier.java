@@ -38,8 +38,25 @@ public class Echiquier {
      *
      * @return l'échiquier
      */
-    public  ArrayList<PieceBase> getEchiquier() {
+    ArrayList<PieceBase> getEchiquier() {
         return m_echiquier;
+    }
+
+    private PieceBase getPiece(Position p_position) {
+        for (PieceBase piece : m_echiquier) {
+            if (piece.getPosition().equals(p_position)) {
+                return piece;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Cette méthode retire toutes les pièces d'un échiquier
+     */
+    public void resetEchiquier(){
+        m_echiquier = new ArrayList<>();
     }
 
     /**
@@ -102,4 +119,83 @@ public class Echiquier {
         //Roi noir
         m_echiquier.add(Roi.obtenirPiece(PieceBase.Couleur.NOIR, new Position(4, 7)));
     }
+
+    /**
+     * Cette méthode vérifie si une pièce occupe la position voulue
+     *
+     * @param p_position position à vérifier
+     * @return Vrai si il n'y a aucune pièce à la position désirée sinon False
+     */
+    public boolean positionEstLibre(Position p_position) {
+        for (PieceBase piece : m_echiquier) {
+            if (piece.getPosition().equals(p_position)) {
+                if (getPiece(p_position).getCouleur() == piece.getCouleur())
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private ArrayList<Position> trajetComplet(Position p_actuelle, Position p_nouvelle) {
+        ArrayList<Position> trajet = new ArrayList<>();
+        int distanceX = p_nouvelle.getX() - p_actuelle.getX();
+        int distanceY = p_nouvelle.getY() - p_actuelle.getY();
+        int direction = -1;
+
+        //Ligne diagonale
+        if (distanceY == distanceX) {
+            if (distanceX > 0) {
+                direction = 1;
+            }
+        while (!p_actuelle.equals(p_nouvelle)) {
+        }
+
+        }
+        //Ligne verticale
+        else if (distanceX == 0) {
+            if (distanceY > 0) {
+                direction = 1;
+            }
+        }
+        //Ligne horizontale
+        else {
+            if (distanceX > 0) {
+                direction = 1;
+            }
+        }
+
+
+        return trajet;
+    }
+
+    private void getTrajet() {
+
+    }
+
+    public boolean deplacerPiece(Position p_postionActuelle, Position p_nouvellePosition) {
+        PieceBase piece = getPiece(p_postionActuelle);
+        ArrayList<Position> trajet = new ArrayList<>();
+
+        if (piece == null) {
+            return false;
+        }
+
+        for (Position position : piece.mouvementsPossible()) {
+            for (PieceBase pieceBase : m_echiquier) {
+                if (position.equals(pieceBase.getPosition())) {
+                    return false;
+                }
+            }
+        }
+
+        if (positionEstLibre(p_nouvellePosition) && piece.deplacer(p_nouvellePosition)) {
+            return true;
+        }
+
+        return false;
+    }
+
+
+
 }

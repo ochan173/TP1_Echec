@@ -74,8 +74,9 @@ public abstract class PieceBase {
     /**
      * Déplace la pièce avec une nouvelle position.
      * @param p_nouvellePosition la nouvelle position pour la pièce.
+     * @return True si le déplacement est possible sinon False
      */
-    protected boolean deplacer(Position p_nouvellePosition) {
+    public boolean deplacer(Position p_nouvellePosition) {
         if(mouvementsPossible().contains(p_nouvellePosition)) {
             m_position.modifierPosition(p_nouvellePosition);
             return true;

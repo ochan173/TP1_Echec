@@ -46,6 +46,12 @@ public class Position {
         m_y = p_position.getY();
     }
 
+    /**
+     *  Méthode qui compare le X et le Y de deux pièces
+     *
+     * @param p_o Objet à comparer
+     * @return True si les deux positions sont identiques sinon False
+     */
     @Override
     public boolean equals(Object p_o) {
         if (this == p_o) return true;

@@ -3,6 +3,7 @@ package echec;
 import echec.Pieces.*;
 import junit.framework.TestCase;
 
+import java.security.spec.ECField;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class TestEchiquier extends TestCase {
      * Setup pour l'échiquier de test
      */
     public void setUp() {
+        Echiquier.getInstance().resetEchiquier();
+        Echiquier.getInstance().remplir();
+
 
         //pions blancs
         m_echiquier.add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(0,1)));
@@ -81,11 +85,46 @@ public class TestEchiquier extends TestCase {
      * Méthode de test pour un nouvel échiquier
      */
     public void testEchiquierDepart() {
-        Echiquier.getInstance().remplir();
-
         for(PieceBase piece : Echiquier.getInstance().getEchiquier()) {
             assertTrue(m_echiquier.contains(piece));
         }
-        //assertEquals(m_echiquier, Echiquier.getInstance().getEchiquier());
     }
+
+    /**
+     * Méthode de test pour le reset d'un échiquier
+     */
+    public void testReset() {
+        Echiquier.getInstance().resetEchiquier();
+        assertEquals(0, Echiquier.getInstance().getEchiquier().size());
+    }
+
+    /**
+     * Méthode pour tester si une position est libre sur l'échiquier
+     */
+    public void testPositionLibreSurEchiquier() {
+        assertTrue(Echiquier.getInstance().positionEstLibre(new Position(0, 2)));
+        assertTrue(Echiquier.getInstance().positionEstLibre(new Position(3, 3)));
+
+        assertFalse(Echiquier.getInstance().positionEstLibre(new Position(0, 1)));
+        assertFalse(Echiquier.getInstance().positionEstLibre(new Position(5,7)));
+
+    }
+
+    public void testDeplacementPiece() {
+        //Déplacement où la pièce n'existe pas
+        assertFalse(Echiquier.getInstance().deplacerPiece(new Position(4, 5), new Position(3,2)));
+
+        //Déplacement d'un pion
+        assertTrue(Echiquier.getInstance().deplacerPiece(new Position(1, 1), new Position(1, 2)));
+        assertFalse(Echiquier.getInstance().deplacerPiece(new Position(1, 1), new Position(1, 4)));
+        assertFalse(Echiquier.getInstance().deplacerPiece(new Position(1, 1), new Position(3, 2)));
+
+        Echiquier.getInstance().resetEchiquier();
+        Echiquier.getInstance().remplir();
+        //Deplacement d'une tour
+        assertFalse(Echiquier.getInstance().deplacerPiece(new Position(0, 0), new Position(0, 2)));
+        Echiquier.getInstance().deplacerPiece(new Position(0, 1), new Position(0, 2));
+        assertTrue(Echiquier.getInstance().deplacerPiece(new Position(0, 0), new Position(0, 1)));
+    }
+
 }
