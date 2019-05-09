@@ -1,6 +1,7 @@
 package echec;
 
 import echec.Pieces.*;
+import javafx.geometry.Pos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -173,29 +174,112 @@ public class Echiquier {
 
     }
 
-    public boolean deplacerPiece(Position p_postionActuelle, Position p_nouvellePosition) {
+    /**
+     * BESOIN DE MODIF
+     * DEVRAIT RETOURNER UNE COLLECTION DE POSITIONS VALIDE POUR UN DÉPLACEMENT EN PRENANT COMPTE DES AUTRES PIÈCES
+     * UNE AUTRE MÉTHODE DEVRAIT ÊTRE UTILISÉ POUR DÉPLACER.
+     *
+     * Vérifie les positions disponibles pour la pièce choisie en fonction des pièces qui l'entoure
+     * Si la position est tourjours disponible, déplace la pièce.
+     * @param p_postionActuelle position de la pièce utilisée.
+     * @param p_nouvellePosition la position cible de la pièce.
+     * @return que le déplacement a eu lieu.
+     */
+    private boolean verificationDeplacement(Position p_postionActuelle, Position p_nouvellePosition) {
         PieceBase piece = getPiece(p_postionActuelle);
-        ArrayList<Position> trajet = new ArrayList<>();
+        ArrayList<Position> mouvements = piece.mouvementsPossible();
 
-        if (piece == null) {
-            return false;
-        }
+        for (Position p : piece.mouvementsPossible()) {
+            if (contientPosition(p)) {
 
-        for (Position position : piece.mouvementsPossible()) {
-            for (PieceBase pieceBase : m_echiquier) {
-                if (position.equals(pieceBase.getPosition())) {
-                    return false;
+                if (p.getX() == piece.getPosition().getX()) {
+                    int x = p.getX();
+                    int y = p.getY();
+
+                    if (y > piece.getPosition().getY()) {
+
+                        while (y <= 7) {
+                            mouvements.remove(new Position(x, y++));
+                        }
+                    }
+                    else if (y < piece.getPosition().getY()) {
+                        while (y >= 0) {
+                            mouvements.remove(new Position(x, y--));
+                        }
+                    }
+                }
+
+                if (p.getY() == piece.getPosition().getY()) {
+                    int x = p.getX();
+                    int y = p.getY();
+
+                    if (x > piece.getPosition().getX()) {
+
+                        while (x <= 7) {
+                            mouvements.remove(new Position(x++, y));
+                        }
+                    }
+                    else if (x < piece.getPosition().getX()) {
+                        while (x >= 0) {
+                            mouvements.remove(new Position(x--, y));
+                        }
+                    }
+                }
+
+                // DIAGONALS
+
+                if (p.getX() > piece.getPosition().getX() && p.getY() > piece.getPosition().getY()) {
+                    int x = p.getX();
+                    int y = p.getY();
+
+                    while (x <= 7 && y <= 7) {
+                        mouvements.remove(new Position(x++, y++));
+                    }
+                }
+
+                if (p.getX() < piece.getPosition().getX() && p.getY() > piece.getPosition().getY()) {
+                    int x = p.getX();
+                    int y = p.getY();
+
+                    while (x >= 0 && y <= 7) {
+                        mouvements.remove(new Position(x--, y++));
+                    }
+                }
+
+                if (p.getX() < piece.getPosition().getX() && p.getY() < piece.getPosition().getY()) {
+                    int x = p.getX();
+                    int y = p.getY();
+
+                    while (x >= 0 && y >= 0) {
+                        mouvements.remove(new Position(x--, y--));
+                    }
+                }
+
+                if (p.getX() > piece.getPosition().getX() && p.getY() < piece.getPosition().getY()) {
+                    int x = p.getX();
+                    int y = p.getY();
+
+                    while (x <= 7 && y >= 0) {
+                        mouvements.remove(new Position(x++, y--));
+                    }
                 }
             }
         }
 
-        if (positionEstLibre(p_nouvellePosition) && piece.deplacer(p_nouvellePosition)) {
+        if (mouvements.contains(p_nouvellePosition)) {
+            piece.deplacer(p_nouvellePosition);
             return true;
         }
 
         return false;
     }
 
-
-
+    private boolean contientPosition(Position p_position) {
+        for (PieceBase p : m_echiquier) {
+            if (p.getPosition().equals(p_position)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

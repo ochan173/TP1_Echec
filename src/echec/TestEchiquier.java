@@ -3,9 +3,7 @@ package echec;
 import echec.Pieces.*;
 import junit.framework.TestCase;
 
-import java.security.spec.ECField;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Classe de test pour l'échiquier
@@ -112,19 +110,19 @@ public class TestEchiquier extends TestCase {
 
     public void testDeplacementPiece() {
         //Déplacement où la pièce n'existe pas
-        assertFalse(Echiquier.getInstance().deplacerPiece(new Position(4, 5), new Position(3,2)));
+        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(4, 5), new Position(3,2)));
 
         //Déplacement d'un pion
-        assertTrue(Echiquier.getInstance().deplacerPiece(new Position(1, 1), new Position(1, 2)));
-        assertFalse(Echiquier.getInstance().deplacerPiece(new Position(1, 1), new Position(1, 4)));
-        assertFalse(Echiquier.getInstance().deplacerPiece(new Position(1, 1), new Position(3, 2)));
+        assertTrue(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(1, 2)));
+        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(1, 4)));
+        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(3, 2)));
 
         Echiquier.getInstance().resetEchiquier();
         Echiquier.getInstance().remplir();
         //Deplacement d'une tour
-        assertFalse(Echiquier.getInstance().deplacerPiece(new Position(0, 0), new Position(0, 2)));
-        Echiquier.getInstance().deplacerPiece(new Position(0, 1), new Position(0, 2));
-        assertTrue(Echiquier.getInstance().deplacerPiece(new Position(0, 0), new Position(0, 1)));
+        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(0, 0), new Position(0, 2)));
+        Echiquier.getInstance().verificationDeplacement(new Position(0, 1), new Position(0, 2));
+        assertTrue(Echiquier.getInstance().verificationDeplacement(new Position(0, 0), new Position(0, 1)));
     }
 
 }
