@@ -55,7 +55,7 @@ public abstract class PieceBase {
         return m_position;
     }
 
-    protected TypePiece getType() {
+    public TypePiece getType() {
         return m_type;
     }
 

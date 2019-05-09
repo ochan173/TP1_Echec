@@ -43,7 +43,7 @@ public class Echiquier {
         return m_echiquier;
     }
 
-    private PieceBase getPiece(Position p_position) {
+    public PieceBase getPiece(Position p_position) {
         for (PieceBase piece : m_echiquier) {
             if (piece.getPosition().equals(p_position)) {
                 return piece;
@@ -195,12 +195,12 @@ public class Echiquier {
                     if (getPiece(p).getCouleur() == piece.getCouleur()) {
                         if (y > piece.getPosition().getY()) {
 
-                            while (y <= 7) {
+                            while (y < 7) {
                                 mouvements.remove(new Position(x, y++));
                             }
                         }
                         else if (y < piece.getPosition().getY()) {
-                            while (y >= 0) {
+                            while (y > 0) {
                                 mouvements.remove(new Position(x, y--));
                             }
                         }
@@ -209,12 +209,12 @@ public class Echiquier {
 
                         if (y > piece.getPosition().getY()) {
 
-                            while (y <= 7) {
+                            while (y < 7) {
                                 mouvements.remove(new Position(x, ++y));
                             }
                         }
                         else if (y < piece.getPosition().getY()) {
-                            while (y >= 0) {
+                            while (y > 0) {
                                 mouvements.remove(new Position(x, --y));
                             }
                         }
@@ -229,12 +229,12 @@ public class Echiquier {
 
                         if (x > piece.getPosition().getX()) {
 
-                            while (x <= 7) {
+                            while (x < 7) {
                                 mouvements.remove(new Position(x++, y));
                             }
                         }
                         else if (x < piece.getPosition().getX()) {
-                            while (x >= 0) {
+                            while (x > 0) {
                                 mouvements.remove(new Position(x--, y));
                             }
                         }
@@ -243,12 +243,12 @@ public class Echiquier {
 
                         if (x > piece.getPosition().getX()) {
 
-                            while (x <= 7) {
+                            while (x < 7) {
                                 mouvements.remove(new Position(++x, y));
                             }
                         }
                         else if (x < piece.getPosition().getX()) {
-                            while (x >= 0) {
+                            while (x > 0) {
                                 mouvements.remove(new Position(--x, y));
                             }
                         }
@@ -261,12 +261,12 @@ public class Echiquier {
                     int x = p.getX();
                     int y = p.getY();
                     if (getPiece(p).getCouleur() == piece.getCouleur()) {
-                        while (x <= 7 && y <= 7) {
+                        while (x < 7 && y < 7) {
                             mouvements.remove(new Position(x++, y++));
                         }
                     }
                     else {
-                        while (x <= 7 && y <= 7) {
+                        while (x < 7 && y < 7) {
                             mouvements.remove(new Position(++x, ++y));
                         }
                     }
@@ -277,12 +277,12 @@ public class Echiquier {
                     int y = p.getY();
                     if (getPiece(p).getCouleur() == piece.getCouleur()) {
 
-                        while (x >= 0 && y <= 7) {
+                        while (x > 0 && y < 7) {
                             mouvements.remove(new Position(x--, y++));
                         }
                     }
                     else {
-                        while (x >= 0 && y <= 7) {
+                        while (x > 0 && y < 7) {
                             mouvements.remove(new Position(--x, ++y));
                         }
                     }
@@ -293,12 +293,12 @@ public class Echiquier {
                     int y = p.getY();
                     if (getPiece(p).getCouleur() == piece.getCouleur()) {
 
-                        while (x >= 0 && y >= 0) {
+                        while (x > 0 && y > 0) {
                             mouvements.remove(new Position(x--, y--));
                         }
                     }
                     else {
-                        while (x >= 0 && y >= 0) {
+                        while (x > 0 && y > 0) {
                             mouvements.remove(new Position(--x, --y));
                         }
                     }
@@ -308,12 +308,12 @@ public class Echiquier {
                     int x = p.getX();
                     int y = p.getY();
                     if (getPiece(p).getCouleur() == piece.getCouleur()) {
-                        while (x <= 7 && y >= 0) {
+                        while (x < 7 && y > 0) {
                             mouvements.remove(new Position(x++, y--));
                         }
                     }
                     else {
-                        while (x <= 7 && y >= 0) {
+                        while (x < 7 && y > 0) {
                             mouvements.remove(new Position(++x, --y));
                         }
                     }

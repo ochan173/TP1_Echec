@@ -1,6 +1,7 @@
 package echec;
 
 import echec.Pieces.*;
+import javafx.geometry.Pos;
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
@@ -108,21 +109,52 @@ public class TestEchiquier extends TestCase {
 
     }
 
-    public void testDeplacementPiece() {
-        //Déplacement où la pièce n'existe pas
-        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(4, 5), new Position(3,2)));
+    public void testMouvementsPiece() {
+        Echiquier m_echiquier = Echiquier.getInstance();
+        assertEquals(new ArrayList<Position>(), m_echiquier.mouvementsPiece(new Position(4, 0)));
 
-        //Déplacement d'un pion
-        assertTrue(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(1, 2)));
-        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(1, 4)));
-        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(3, 2)));
+        ArrayList<Position> mouvementsPionBlanc = new ArrayList<Position>();
+        mouvementsPionBlanc.add(new Position(0,2));
+        mouvementsPionBlanc.add(new Position(0,3));
+        assertEquals(mouvementsPionBlanc, m_echiquier.mouvementsPiece(new Position(0,1)));
 
-        Echiquier.getInstance().resetEchiquier();
-        Echiquier.getInstance().remplir();
-        //Deplacement d'une tour
-        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(0, 0), new Position(0, 2)));
-        Echiquier.getInstance().verificationDeplacement(new Position(0, 1), new Position(0, 2));
-        assertTrue(Echiquier.getInstance().verificationDeplacement(new Position(0, 0), new Position(0, 1)));
+        PieceBase pionBlanc = m_echiquier.getPiece(new Position(4,1));
+        pionBlanc.deplacer(new Position(4,3));
+
+        ArrayList<Position> mouvementRoiBlanc = new ArrayList<Position>();
+        PieceBase roiBlanc = m_echiquier.getPiece(new Position(4,0));
+        assertEquals(PieceBase.TypePiece.ROI, roiBlanc.getType());
+        mouvementRoiBlanc.add(new Position(4,1));
+        assertEquals(mouvementRoiBlanc, m_echiquier.mouvementsPiece(new Position(4, 0)));
+
+        ArrayList<Position> mouvementsCavalier = new ArrayList<Position>();
+        PieceBase cavalierBlanc = m_echiquier.getPiece(new Position(6,0));
+        assertEquals(PieceBase.TypePiece.CAVALIER, cavalierBlanc.getType());
+
+        cavalierBlanc.deplacer(new Position(5,2));
+        cavalierBlanc.deplacer(new Position(4,4));
+        Position cible = new Position(5,6);
+        assertTrue(m_echiquier.mouvementsPiece(cavalierBlanc.getPosition()).contains(cible));
+
+        //cavalierBlanc.deplacer(new Position(5,6));
+
     }
+
+//    public void testDeplacementPiece() {
+//        //Déplacement où la pièce n'existe pas
+//        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(4, 5), new Position(3,2)));
+//
+//        //Déplacement d'un pion
+//        assertTrue(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(1, 2)));
+//        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(1, 4)));
+//        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(3, 2)));
+//
+//        Echiquier.getInstance().resetEchiquier();
+//        Echiquier.getInstance().remplir();
+//        //Deplacement d'une tour
+//        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(0, 0), new Position(0, 2)));
+//        Echiquier.getInstance().verificationDeplacement(new Position(0, 1), new Position(0, 2));
+//        assertTrue(Echiquier.getInstance().verificationDeplacement(new Position(0, 0), new Position(0, 1)));
+//    }
 
 }
