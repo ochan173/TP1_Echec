@@ -1,6 +1,7 @@
 package echec.Pieces;
 
 
+import echec.Echiquier;
 import echec.Position;
 
 import java.util.ArrayList;
@@ -83,6 +84,7 @@ public abstract class PieceBase {
         }
         return false;
     }
+
 
     /**
      * Permet d'obtenir les positions pouvant être attaquées par la pièce.

@@ -138,41 +138,38 @@ public class Echiquier {
         return true;
     }
 
-    private ArrayList<Position> trajetComplet(Position p_actuelle, Position p_nouvelle) {
-        ArrayList<Position> trajet = new ArrayList<>();
-        int distanceX = p_nouvelle.getX() - p_actuelle.getX();
-        int distanceY = p_nouvelle.getY() - p_actuelle.getY();
-        int direction = -1;
+//    private ArrayList<Position> trajetComplet(Position p_actuelle, Position p_nouvelle) {
+//                ArrayList<Position> trajet = new ArrayList<>();
+//                int distanceX = p_nouvelle.getX() - p_actuelle.getX();
+//                int distanceY = p_nouvelle.getY() - p_actuelle.getY();
+//                int direction = -1;
+//
+//                //Ligne diagonale
+//                if (distanceY == distanceX) {
+//                    if (distanceX > 0) {
+//                        direction = 1;
+//                    }
+//                    while (!p_actuelle.equals(p_nouvelle)) {
+//                    }
+//
+//                }
+//                //Ligne verticale
+//                else if (distanceX == 0) {
+//                    if (distanceY > 0) {
+//                        direction = 1;
+//                    }
+//                }
+//                //Ligne horizontale
+//                else {
+//                    if (distanceX > 0) {
+//                        direction = 1;
+//                    }
+//        }
+//
+//
+//        return trajet;
+//    }
 
-        //Ligne diagonale
-        if (distanceY == distanceX) {
-            if (distanceX > 0) {
-                direction = 1;
-            }
-        while (!p_actuelle.equals(p_nouvelle)) {
-        }
-
-        }
-        //Ligne verticale
-        else if (distanceX == 0) {
-            if (distanceY > 0) {
-                direction = 1;
-            }
-        }
-        //Ligne horizontale
-        else {
-            if (distanceX > 0) {
-                direction = 1;
-            }
-        }
-
-
-        return trajet;
-    }
-
-    private void getTrajet() {
-
-    }
 
     /**
      * Permet d'obtenir les mouvements valides d'une pièce en fonction des autres pièces sur l'échiquier
@@ -185,136 +182,129 @@ public class Echiquier {
         PieceBase piece = getPiece(p_position);
         ArrayList<Position> mouvements = piece.mouvementsPossible();
 
-        for (Position p : piece.mouvementsPossible()) {
-            if (contientPosition(p)) {
-
-                if (p.getX() == piece.getPosition().getX()) {
-                    int x = p.getX();
-                    int y = p.getY();
-
-                    if (getPiece(p).getCouleur() == piece.getCouleur()) {
-                        if (y > piece.getPosition().getY()) {
-
-                            while (y < 7) {
-                                mouvements.remove(new Position(x, y++));
-                            }
-                        }
-                        else if (y < piece.getPosition().getY()) {
-                            while (y > 0) {
-                                mouvements.remove(new Position(x, y--));
-                            }
-                        }
-                    }
-                    else {
-
-                        if (y > piece.getPosition().getY()) {
-
-                            while (y < 7) {
-                                mouvements.remove(new Position(x, ++y));
-                            }
-                        }
-                        else if (y < piece.getPosition().getY()) {
-                            while (y > 0) {
-                                mouvements.remove(new Position(x, --y));
-                            }
-                        }
-                    }
+        if (piece.getType() == PieceBase.TypePiece.CAVALIER) {
+            for (Position p : piece.mouvementsPossible()) {
+                if (!positionEstLibre(p) && getPiece(p).getCouleur() == piece.getCouleur()) {
+                    mouvements.remove(p);
                 }
+            }
+        }
+        else {
+            for (Position p : piece.mouvementsPossible()) {
+                if (contientPosition(p)) {
 
-                else if (p.getY() == piece.getPosition().getY()) {
-                    int x = p.getX();
-                    int y = p.getY();
+                    if (p.getX() == piece.getPosition().getX()) {
+                        int x = p.getX();
+                        int y = p.getY();
 
-                    if (getPiece(p).getCouleur() == piece.getCouleur()) {
+                        if (getPiece(p).getCouleur() == piece.getCouleur()) {
+                            if (y > piece.getPosition().getY()) {
 
-                        if (x > piece.getPosition().getX()) {
+                                while (y < 7) {
+                                    mouvements.remove(new Position(x, y++));
+                                }
+                            } else if (y < piece.getPosition().getY()) {
+                                while (y > 0) {
+                                    mouvements.remove(new Position(x, y--));
+                                }
+                            }
+                        } else {
 
-                            while (x < 7) {
-                                mouvements.remove(new Position(x++, y));
+                            if (y > piece.getPosition().getY()) {
+
+                                while (y < 7) {
+                                    mouvements.remove(new Position(x, ++y));
+                                }
+                            } else if (y < piece.getPosition().getY()) {
+                                while (y > 0) {
+                                    mouvements.remove(new Position(x, --y));
+                                }
                             }
                         }
-                        else if (x < piece.getPosition().getX()) {
-                            while (x > 0) {
-                                mouvements.remove(new Position(x--, y));
+                    } else if (p.getY() == piece.getPosition().getY()) {
+                        int x = p.getX();
+                        int y = p.getY();
+
+                        if (getPiece(p).getCouleur() == piece.getCouleur()) {
+
+                            if (x > piece.getPosition().getX()) {
+
+                                while (x < 7) {
+                                    mouvements.remove(new Position(x, y));
+                                    x++;
+                                }
+                            } else if (x < piece.getPosition().getX()) {
+                                while (x > 0) {
+                                    mouvements.remove(new Position(x, y));
+                                    x--;
+                                }
+                            }
+                        } else {
+
+                            if (x > piece.getPosition().getX()) {
+
+                                while (x < 7) {
+                                    mouvements.remove(new Position(++x, y));
+                                }
+                            } else if (x < piece.getPosition().getX()) {
+                                while (x > 0) {
+                                    mouvements.remove(new Position(--x, y));
+                                }
                             }
                         }
                     }
-                    else {
 
-                        if (x > piece.getPosition().getX()) {
+                    // DIAGONALS
 
-                            while (x < 7) {
-                                mouvements.remove(new Position(++x, y));
+                    else if (p.getX() > piece.getPosition().getX() && p.getY() > piece.getPosition().getY()) {
+                        int x = p.getX();
+                        int y = p.getY();
+                        if (getPiece(p).getCouleur() == piece.getCouleur()) {
+                            while (x < 7 && y < 7) {
+                                mouvements.remove(new Position(x++, y++));
+                            }
+                        } else {
+                            while (x < 7 && y < 7) {
+                                mouvements.remove(new Position(++x, ++y));
                             }
                         }
-                        else if (x < piece.getPosition().getX()) {
-                            while (x > 0) {
-                                mouvements.remove(new Position(--x, y));
+                    } else if (p.getX() < piece.getPosition().getX() && p.getY() > piece.getPosition().getY()) {
+                        int x = p.getX();
+                        int y = p.getY();
+                        if (getPiece(p).getCouleur() == piece.getCouleur()) {
+
+                            while (x > 0 && y < 7) {
+                                mouvements.remove(new Position(x--, y++));
+                            }
+                        } else {
+                            while (x > 0 && y < 7) {
+                                mouvements.remove(new Position(--x, ++y));
                             }
                         }
-                    }
-                }
+                    } else if (p.getX() < piece.getPosition().getX() && p.getY() < piece.getPosition().getY()) {
+                        int x = p.getX();
+                        int y = p.getY();
+                        if (getPiece(p).getCouleur() == piece.getCouleur()) {
 
-                // DIAGONALS
-
-                else if (p.getX() > piece.getPosition().getX() && p.getY() > piece.getPosition().getY()) {
-                    int x = p.getX();
-                    int y = p.getY();
-                    if (getPiece(p).getCouleur() == piece.getCouleur()) {
-                        while (x < 7 && y < 7) {
-                            mouvements.remove(new Position(x++, y++));
+                            while (x > 0 && y > 0) {
+                                mouvements.remove(new Position(x--, y--));
+                            }
+                        } else {
+                            while (x > 0 && y > 0) {
+                                mouvements.remove(new Position(--x, --y));
+                            }
                         }
-                    }
-                    else {
-                        while (x < 7 && y < 7) {
-                            mouvements.remove(new Position(++x, ++y));
-                        }
-                    }
-                }
-
-                else if (p.getX() < piece.getPosition().getX() && p.getY() > piece.getPosition().getY()) {
-                    int x = p.getX();
-                    int y = p.getY();
-                    if (getPiece(p).getCouleur() == piece.getCouleur()) {
-
-                        while (x > 0 && y < 7) {
-                            mouvements.remove(new Position(x--, y++));
-                        }
-                    }
-                    else {
-                        while (x > 0 && y < 7) {
-                            mouvements.remove(new Position(--x, ++y));
-                        }
-                    }
-                }
-
-                else if (p.getX() < piece.getPosition().getX() && p.getY() < piece.getPosition().getY()) {
-                    int x = p.getX();
-                    int y = p.getY();
-                    if (getPiece(p).getCouleur() == piece.getCouleur()) {
-
-                        while (x > 0 && y > 0) {
-                            mouvements.remove(new Position(x--, y--));
-                        }
-                    }
-                    else {
-                        while (x > 0 && y > 0) {
-                            mouvements.remove(new Position(--x, --y));
-                        }
-                    }
-                }
-
-                else if (p.getX() > piece.getPosition().getX() && p.getY() < piece.getPosition().getY()) {
-                    int x = p.getX();
-                    int y = p.getY();
-                    if (getPiece(p).getCouleur() == piece.getCouleur()) {
-                        while (x < 7 && y > 0) {
-                            mouvements.remove(new Position(x++, y--));
-                        }
-                    }
-                    else {
-                        while (x < 7 && y > 0) {
-                            mouvements.remove(new Position(++x, --y));
+                    } else if (p.getX() > piece.getPosition().getX() && p.getY() < piece.getPosition().getY()) {
+                        int x = p.getX();
+                        int y = p.getY();
+                        if (getPiece(p).getCouleur() == piece.getCouleur()) {
+                            while (x < 7 && y > 0) {
+                                mouvements.remove(new Position(x++, y--));
+                            }
+                        } else {
+                            while (x < 7 && y > 0) {
+                                mouvements.remove(new Position(++x, --y));
+                            }
                         }
                     }
                 }
