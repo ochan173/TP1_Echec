@@ -159,6 +159,20 @@ public class TestEchiquier extends TestCase {
         cavalierBlanc.deplacer(new Position(4,4));
         Position cible = new Position(5,6);
         assertTrue(echiquier.mouvementsPiece(cavalierBlanc.getPosition()).contains(cible));
+
+        echiquier.resetEchiquier();
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(3, 3)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(2, 4)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(3, 4)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(4, 4)));
+        assertEquals(2, echiquier.mouvementsPiece(new Position(3, 3)).size());
+
+        echiquier.resetEchiquier();
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(3, 5)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(2, 4)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(3, 4)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(4, 4)));
+        assertEquals(0, echiquier.mouvementsPiece(new Position(3, 5)).size());
     }
 
     /**

@@ -174,6 +174,18 @@ public class Echiquier {
                 }
             }
         }
+        else if (piece.getType() == PieceBase.TypePiece.PION) {
+            for (Position p : piece.mouvementsPossible()) {
+                if (!positionEstLibre(p)) {
+                    mouvements.remove(p);
+                }
+            }
+            for (Position p : piece.zoneAttaques()) {
+                if (!positionEstLibre(p) && getPiece(p).getCouleur() != piece.getCouleur()) {
+                    mouvements.add(p);
+                }
+            }
+        }
         else {
             for (Position p : piece.mouvementsPossible()) {
                 if (contientPosition(p)) {
