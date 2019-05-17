@@ -173,6 +173,17 @@ public class TestEchiquier extends TestCase {
         echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(3, 4)));
         echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(4, 4)));
         assertEquals(0, echiquier.mouvementsPiece(new Position(3, 5)).size());
+
+
+        echiquier.resetEchiquier();
+        echiquier.getEchiquier().add(Roi.obtenirPiece(PieceBase.Couleur.NOIR, new Position(3, 3)));
+
+        echiquier.getEchiquier().add(Tour.obtenirPiece(PieceBase.Couleur.BLANC, new Position(1, 2)));
+        echiquier.getEchiquier().add(Tour.obtenirPiece(PieceBase.Couleur.BLANC, new Position(2, 1)));
+        echiquier.getEchiquier().add(Tour.obtenirPiece(PieceBase.Couleur.BLANC, new Position(4, 5)));
+        echiquier.getEchiquier().add(Tour.obtenirPiece(PieceBase.Couleur.BLANC, new Position(5, 4)));
+
+        assertEquals(0, echiquier.mouvementsPiece(new Position(3, 3)).size());
     }
 
     /**
@@ -201,22 +212,4 @@ public class TestEchiquier extends TestCase {
         assertEquals(PieceBase.TypePiece.FOU, m_echiquier.getPiece(new Position(3, 6)).getType());
         assertEquals(31, m_echiquier.getEchiquier().size());
     }
-
-//    public void testDeplacementPiece() {
-//        //Déplacement où la pièce n'existe pas
-//        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(4, 5), new Position(3,2)));
-//
-//        //Déplacement d'un pion
-//        assertTrue(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(1, 2)));
-//        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(1, 4)));
-//        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(1, 1), new Position(3, 2)));
-//
-//        Echiquier.getInstance().resetEchiquier();
-//        Echiquier.getInstance().remplir();
-//        //Deplacement d'une tour
-//        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(0, 0), new Position(0, 2)));
-//        Echiquier.getInstance().verificationDeplacement(new Position(0, 1), new Position(0, 2));
-//        assertTrue(Echiquier.getInstance().verificationDeplacement(new Position(0, 0), new Position(0, 1)));
-//    }
-
 }

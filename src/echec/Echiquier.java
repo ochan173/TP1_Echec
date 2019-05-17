@@ -168,6 +168,30 @@ public class Echiquier {
     }
 
     /**
+     * Méthode qui retourne les pièces adverses qui mettent en échec le roi
+     *
+     * @param p_roi Roi à analyser
+     * @return la liste des pièces qui mettent le roi en echec
+     */
+    private ArrayList<PieceBase> detectionEchec(PieceBase p_roi) {
+        if (p_roi.getType() != PieceBase.TypePiece.ROI) {
+            throw new IllegalArgumentException("La pièce n'est pas un roi");
+        }
+
+        ArrayList<PieceBase> piecesDangereuses = new ArrayList<>();
+
+        for (PieceBase p : m_echiquier) {
+            if (p.getCouleur() != p_roi.getCouleur()) {
+                if (mouvementsPiece(p.getPosition()).contains(p_roi.getPosition())) {
+                    piecesDangereuses.add(p);
+                }
+            }
+        }
+
+        return piecesDangereuses;
+    }
+
+    /**
      * Permet d'obtenir les mouvements valides d'une pièce en fonction des autres pièces sur l'échiquier
      * si la piece sur la position est de même couleur on la retire de la liste de mouvements
      * si la piece sur la position est de de couleur différente est de la même couleur on la laisse pour la manger
@@ -187,7 +211,7 @@ public class Echiquier {
                 }
             }
         }
-        
+
         if (piece.getType() == PieceBase.TypePiece.CAVALIER) {
             for (Position p : piece.mouvementsPossible()) {
                 if (!positionEstLibre(p) && getPiece(p).getCouleur() == piece.getCouleur()) {

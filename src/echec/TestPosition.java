@@ -32,6 +32,9 @@ public class TestPosition extends TestCase {
         assertEquals(4, p.getY());
     }
 
+    /**
+     * Méthode qui test l'égalité entre des positions
+     */
     public void testEgalite() {
         Position positionA = new Position(5,5);
         Position positionB = new Position(5,5);
@@ -56,6 +59,9 @@ public class TestPosition extends TestCase {
         assertFalse(positionA.equals("Position"));
     }
 
+    /**
+     * Méthode pour tester le hashage d'une position
+     */
     public void testHash(){
         Position positionA = new Position(5,5);
         Position positionC = new Position(5,5);
