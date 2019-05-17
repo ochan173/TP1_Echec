@@ -150,6 +150,7 @@ public class TestEchiquier extends TestCase {
         m_echiquier.resetEchiquier();
         m_echiquier.remplir();
 
+        assertEquals(32, m_echiquier.getEchiquier().size());
         m_echiquier.set_pieceCourante(m_echiquier.getPiece(new Position(6,1)));
         m_echiquier.deplacerPieceCourante(new Position(6, 3));
         assertEquals(PieceBase.TypePiece.PION, m_echiquier.getPiece(new Position(6,3)).getType());
@@ -162,9 +163,10 @@ public class TestEchiquier extends TestCase {
         assertEquals(PieceBase.TypePiece.FOU, m_echiquier.get_pieceCourante().getType());
 
         m_echiquier.deplacerPieceCourante(new Position(7, 2));
+        m_echiquier.set_pieceCourante(m_echiquier.getPiece(new Position(7,2)));
         m_echiquier.deplacerPieceCourante(new Position(3, 6));
-        assertEquals(PieceBase.TypePiece.FOU, m_echiquier.get_pieceCourante().getType());
-        assertEquals(PieceBase.TypePiece.FOU, m_echiquier.getPiece(new Position(3, 6)));
+        assertEquals(PieceBase.TypePiece.FOU, m_echiquier.getPiece(new Position(3, 6)).getType());
+        assertEquals(31, m_echiquier.getEchiquier().size());
     }
 
 //    public void testDeplacementPiece() {
