@@ -109,42 +109,61 @@ public class TestEchiquier extends TestCase {
 
     }
 
+    /**
+     * Méthode pour tester les mouvements possibles d'une pièce
+     */
     public void testMouvementsPiece() {
-        Echiquier m_echiquier = Echiquier.getInstance();
-        m_echiquier.resetEchiquier();
-        m_echiquier.remplir();
+        Echiquier echiquier = Echiquier.getInstance();
+        echiquier.resetEchiquier();
 
-        PieceBase cavalierBlanc = m_echiquier.getPiece(new Position(6,0));
+       echiquier.getEchiquier().add(Reine.obtenirPiece(PieceBase.Couleur.NOIR, new Position(4, 3)));
+
+       echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(3, 2)));
+       echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(3, 3)));
+       echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(3, 4)));
+       echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(4, 2)));
+       echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(4, 4)));
+       echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(5, 2)));
+       echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(5, 3)));
+       echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.BLANC, new Position(5, 4)));
+
+        assertEquals(8, echiquier.mouvementsPiece(new Position(4, 3)).size());
+
+
+        echiquier.resetEchiquier();
+
+        echiquier.getEchiquier().add(Reine.obtenirPiece(PieceBase.Couleur.NOIR, new Position(4, 3)));
+
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(3, 2)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(3, 3)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(3, 4)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(4, 2)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(4, 4)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(5, 2)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(5, 3)));
+        echiquier.getEchiquier().add(Pion.obtenirPiece(PieceBase.Couleur.NOIR, new Position(5, 4)));
+
+        assertEquals(0, echiquier.mouvementsPiece(new Position(4, 3)).size());
+
+
+        echiquier.resetEchiquier();
+        echiquier.remplir();
+
+        PieceBase cavalierBlanc = echiquier.getPiece(new Position(6,0));
+
         assertEquals(PieceBase.TypePiece.CAVALIER, cavalierBlanc.getType());
 
-        assertFalse(m_echiquier.mouvementsPiece(cavalierBlanc.getPosition()).contains(new Position(4, 1)));
+        assertFalse(echiquier.mouvementsPiece(cavalierBlanc.getPosition()).contains(new Position(4, 1)));
 
         cavalierBlanc.deplacer(new Position(5,2));
         cavalierBlanc.deplacer(new Position(4,4));
         Position cible = new Position(5,6);
-        assertTrue(m_echiquier.mouvementsPiece(cavalierBlanc.getPosition()).contains(cible));
-
-        ArrayList<Position> mouvementsPionBlanc = new ArrayList<>();
-        mouvementsPionBlanc.add(new Position(0,2));
-        mouvementsPionBlanc.add(new Position(0,3));
-        assertEquals(mouvementsPionBlanc, m_echiquier.mouvementsPiece(new Position(0,1)));
-
-        PieceBase pionBlanc = m_echiquier.getPiece(new Position(4,1));
-        pionBlanc.deplacer(new Position(4,3));
-
-        ArrayList<Position> mouvementRoiBlanc = new ArrayList<>();
-        PieceBase roiBlanc = m_echiquier.getPiece(new Position(4,0));
-        assertEquals(PieceBase.TypePiece.ROI, roiBlanc.getType());
-        mouvementRoiBlanc.add(new Position(4,1));
-        assertEquals(mouvementRoiBlanc, m_echiquier.mouvementsPiece(new Position(4, 0)));
-
-        PieceBase tourB = m_echiquier.getPiece(new Position(7,0));
-        assertEquals(PieceBase.TypePiece.TOUR, tourB.getType());
-        assertFalse(m_echiquier.positionEstLibre(new Position(7, 1)));
-        assertFalse(m_echiquier.mouvementsPiece(new Position(7, 0)).contains(new Position(7, 1)));
-
+        assertTrue(echiquier.mouvementsPiece(cavalierBlanc.getPosition()).contains(cible));
     }
 
+    /**
+     * Méthode pour tester les déplacements d'une pièce
+     */
     public void testDeplacementPiece() {
         Echiquier m_echiquier = Echiquier.getInstance();
         m_echiquier.resetEchiquier();

@@ -99,23 +99,6 @@ public class Cavalier extends PieceBase {
             // Ne fait rien, empêche simplement de planter si la position est invalide, donc non crée
         }
 
-//        Position hautDroit =  new Position(this.getPosition().getX() + plus, this.getPosition().getY()+plus2);
-//        Position hautGauche =  new Position(this.getPosition().getX() + moins, this.getPosition().getY()+plus2);
-//        Position basDroit =  new Position(this.getPosition().getX() + plus, this.getPosition().getY()+moins2);
-//        Position basGauche =  new Position(this.getPosition().getX() + moins, this.getPosition().getY()+moins2);
-//
-//
-//
-//        mouvements.add(hautDroit);
-//        mouvements.add(hautGauche);
-//        mouvements.add(basDroit);
-//        mouvements.add(basGauche);
-//
-//        mouvements.add(new Position(hautDroit.getY(), hautDroit.getX()));
-//        mouvements.add(new Position(hautGauche.getY(), hautGauche.getX()));
-//        mouvements.add(new Position(basGauche.getY(), basGauche.getX()));
-//        mouvements.add(new Position(basDroit.getY(), basDroit.getX()));
-
         return mouvements;
     }
 }

@@ -63,6 +63,6 @@ public class Position {
 
     @Override
     public int hashCode() {
-        return Objects.hash(m_x, m_y);
+            return Objects.hash(m_x, m_y);
     }
 }
