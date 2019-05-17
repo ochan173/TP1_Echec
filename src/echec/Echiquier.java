@@ -156,6 +156,17 @@ public class Echiquier {
         }
     }
 
+    private ArrayList<Position> zoneDangerRoi(PieceBase.Couleur p_couleur) {
+        ArrayList<Position> zone = new ArrayList<>();
+
+        for (PieceBase p : m_echiquier) {
+            if (p.getCouleur() != p_couleur) {
+                zone.addAll(mouvementsPiece(p.getPosition()));
+            }
+        }
+        return zone;
+    }
+
     /**
      * Permet d'obtenir les mouvements valides d'une pièce en fonction des autres pièces sur l'échiquier
      * si la piece sur la position est de même couleur on la retire de la liste de mouvements
@@ -167,6 +178,16 @@ public class Echiquier {
         PieceBase piece = getPiece(p_position);
         ArrayList<Position> mouvements = piece.mouvementsPossible();
 
+        if (piece.getType() == PieceBase.TypePiece.ROI){
+
+            ArrayList<Position> zoneDanger = zoneDangerRoi(piece.getCouleur());
+            for (Position p : piece.mouvementsPossible()) {
+                if (zoneDanger.contains(p)) {
+                    mouvements.remove(p);
+                }
+            }
+        }
+        
         if (piece.getType() == PieceBase.TypePiece.CAVALIER) {
             for (Position p : piece.mouvementsPossible()) {
                 if (!positionEstLibre(p) && getPiece(p).getCouleur() == piece.getCouleur()) {
