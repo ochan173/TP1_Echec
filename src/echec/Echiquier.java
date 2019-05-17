@@ -1,11 +1,8 @@
 package echec;
 
 import echec.Pieces.*;
-import javafx.geometry.Pos;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Classe de l'échiquier
@@ -15,7 +12,8 @@ import java.util.Objects;
  */
 public class Echiquier {
     private static  Echiquier m_instance;
-    private ArrayList<PieceBase> m_echiquier = null;
+    private ArrayList<PieceBase> m_echiquier;
+    private PieceBase m_pieceCourante;
 
     /**
      * Méthode pour avoir l'instance de l'échiquier
@@ -51,6 +49,14 @@ public class Echiquier {
         }
 
         return null;
+    }
+
+    public void set_pieceCourante(PieceBase m_pieceCourante) {
+        this.m_pieceCourante = m_pieceCourante;
+    }
+
+    public PieceBase get_pieceCourante() {
+        return m_pieceCourante;
     }
 
     /**
@@ -170,6 +176,17 @@ public class Echiquier {
 //        return trajet;
 //    }
 
+    public void deplacerPieceCourante(Position p_position) {
+        if (mouvementsPiece(m_pieceCourante.getPosition()).contains(p_position)) {
+            PieceBase pieceCible = getPiece(p_position);
+            if (pieceCible != null) {
+                m_echiquier.remove(pieceCible);
+            }
+
+            m_pieceCourante.deplacer(p_position);
+            m_pieceCourante = null;
+        }
+    }
 
     /**
      * Permet d'obtenir les mouvements valides d'une pièce en fonction des autres pièces sur l'échiquier
@@ -414,12 +431,23 @@ public class Echiquier {
 //        return false;
 //    }
 
+//    private PieceBase obtenirPiece(Position p_position) {
+//        for (PieceBase p : m_echiquier) {
+//            if (p.getPosition().equals(p_position)) {
+//                return p;
+//            }
+//        }
+//
+//        return null;
+//    }
+
     private boolean contientPosition(Position p_position) {
         for (PieceBase p : m_echiquier) {
             if (p.getPosition().equals(p_position)) {
                 return true;
             }
         }
+
         return false;
     }
 }

@@ -145,6 +145,28 @@ public class TestEchiquier extends TestCase {
 
     }
 
+    public void testDeplacementPiece() {
+        Echiquier m_echiquier = Echiquier.getInstance();
+        m_echiquier.resetEchiquier();
+        m_echiquier.remplir();
+
+        m_echiquier.set_pieceCourante(m_echiquier.getPiece(new Position(6,1)));
+        m_echiquier.deplacerPieceCourante(new Position(6, 3));
+        assertEquals(PieceBase.TypePiece.PION, m_echiquier.getPiece(new Position(6,3)).getType());
+
+        m_echiquier.set_pieceCourante(m_echiquier.getPiece(new Position(6,3)));
+        m_echiquier.deplacerPieceCourante(new Position(6, 4));
+        assertEquals(PieceBase.TypePiece.PION, m_echiquier.getPiece(new Position(6,4)).getType());
+
+        m_echiquier.set_pieceCourante(m_echiquier.getPiece(new Position(5,0)));
+        assertEquals(PieceBase.TypePiece.FOU, m_echiquier.get_pieceCourante().getType());
+
+        m_echiquier.deplacerPieceCourante(new Position(7, 2));
+        m_echiquier.deplacerPieceCourante(new Position(3, 6));
+        assertEquals(PieceBase.TypePiece.FOU, m_echiquier.get_pieceCourante().getType());
+        assertEquals(PieceBase.TypePiece.FOU, m_echiquier.getPiece(new Position(3, 6)));
+    }
+
 //    public void testDeplacementPiece() {
 //        //Déplacement où la pièce n'existe pas
 //        assertFalse(Echiquier.getInstance().verificationDeplacement(new Position(4, 5), new Position(3,2)));
