@@ -55,4 +55,12 @@ public class TestPosition extends TestCase {
         assertNotNull(positionA);
         assertFalse(positionA.equals("Position"));
     }
+
+    public void testHash(){
+        Position positionA = new Position(5,5);
+        Position positionC = new Position(5,5);
+        Position positionB = new Position(5,4);
+        assertEquals(positionA.hashCode(), positionC.hashCode());
+        assertNotSame(positionA.hashCode(), positionB.hashCode());
+    }
 }
